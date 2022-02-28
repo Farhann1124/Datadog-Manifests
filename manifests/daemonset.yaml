@@ -3,12 +3,12 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: release-name-datadog
+  name: datadog
   namespace: default
   labels:
     helm.sh/chart: 'datadog-2.30.10'
-    app.kubernetes.io/name: "release-name-datadog"
-    app.kubernetes.io/instance: "release-name"
+    app.kubernetes.io/name: "datadog"
+    app.kubernetes.io/instance: "datadog"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/version: "7"
     app.kubernetes.io/component: agent
@@ -16,20 +16,20 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: release-name-datadog
+      app: datadog
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: "release-name-datadog"
-        app.kubernetes.io/instance: "release-name"
+        app.kubernetes.io/name: "datadog"
+        app.kubernetes.io/instance: "datadog"
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/component: agent
-        app: release-name-datadog
+        app: datadog
         
-      name: release-name-datadog
+      name: datadog
       annotations:
-        checksum/clusteragent_token: 840705f6a0384cb9c19f1081bdf5a0a0cb687306a15c64ecf72e237b5d572900
-        checksum/api_key: 684e4675928f4d83e731ceea7a2d1dcb47d51c831a98af768e82f02f1903224b
+        checksum/clusteragent_token: 3bcc0c4a554d6e1e1bea8aaf45d72ab7773cbdd53e506812c8d6e93b36bec51a
+        checksum/api_key: 5c47b4423d7c9a566a2297b3ff8e60d70c11d160a9a69dd2d9c565bb0a2a6255
         checksum/install_info: 694303964ad805dc19e2647d69094f47d63feffbac7545735bfa9b55e0162ae2
         checksum/autoconf-config: 74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b
         checksum/confd-config: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
@@ -53,7 +53,7 @@ spec:
           - name: DD_API_KEY
             valueFrom:
               secretKeyRef:
-                name: "release-name-datadog"
+                name: "datadog"
                 key: api-key
           - name: DD_KUBERNETES_KUBELET_HOST
             valueFrom:
@@ -71,11 +71,11 @@ spec:
           - name: DD_CLUSTER_AGENT_ENABLED
             value: "true"
           - name: DD_CLUSTER_AGENT_KUBERNETES_SERVICE_NAME
-            value: release-name-datadog-cluster-agent
+            value: datadog-cluster-agent
           - name: DD_CLUSTER_AGENT_AUTH_TOKEN
             valueFrom:
               secretKeyRef:
-                  name: release-name-datadog-cluster-agent
+                  name: datadog-cluster-agent
                   key: token
           
           - name: DD_APM_ENABLED
@@ -177,7 +177,7 @@ spec:
           - name: DD_API_KEY
             valueFrom:
               secretKeyRef:
-                name: "release-name-datadog"
+                name: "datadog"
                 key: api-key
           - name: DD_KUBERNETES_KUBELET_HOST
             valueFrom:
@@ -189,11 +189,11 @@ spec:
           - name: DD_CLUSTER_AGENT_ENABLED
             value: "true"
           - name: DD_CLUSTER_AGENT_KUBERNETES_SERVICE_NAME
-            value: release-name-datadog-cluster-agent
+            value: datadog-cluster-agent
           - name: DD_CLUSTER_AGENT_AUTH_TOKEN
             valueFrom:
               secretKeyRef:
-                  name: release-name-datadog-cluster-agent
+                  name: datadog-cluster-agent
                   key: token
           
           - name: DD_LOG_LEVEL
@@ -243,7 +243,7 @@ spec:
           - name: DD_API_KEY
             valueFrom:
               secretKeyRef:
-                name: "release-name-datadog"
+                name: "datadog"
                 key: api-key
           - name: DD_KUBERNETES_KUBELET_HOST
             valueFrom:
@@ -255,11 +255,11 @@ spec:
           - name: DD_CLUSTER_AGENT_ENABLED
             value: "true"
           - name: DD_CLUSTER_AGENT_KUBERNETES_SERVICE_NAME
-            value: release-name-datadog-cluster-agent
+            value: datadog-cluster-agent
           - name: DD_CLUSTER_AGENT_AUTH_TOKEN
             valueFrom:
               secretKeyRef:
-                  name: release-name-datadog-cluster-agent
+                  name: datadog-cluster-agent
                   key: token
           
           - name: DD_PROCESS_AGENT_DISCOVERY_ENABLED
@@ -340,7 +340,7 @@ spec:
           - name: DD_API_KEY
             valueFrom:
               secretKeyRef:
-                name: "release-name-datadog"
+                name: "datadog"
                 key: api-key
           - name: DD_KUBERNETES_KUBELET_HOST
             valueFrom:
@@ -354,7 +354,7 @@ spec:
       volumes:
       - name: installinfo
         configMap:
-          name: release-name-datadog-installinfo
+          name: datadog-installinfo
       - name: config
         emptyDir: {}
         
@@ -399,7 +399,7 @@ spec:
       tolerations:
       affinity:
         {}
-      serviceAccountName: release-name-datadog
+      serviceAccountName: datadog
       nodeSelector:
         kubernetes.io/os: linux
   updateStrategy:
