@@ -1,0 +1,22 @@
+---
+# Source: datadog/templates/install_info-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: release-name-datadog-installinfo
+  namespace: default
+  labels:
+    helm.sh/chart: 'datadog-2.30.10'
+    app.kubernetes.io/name: "release-name-datadog"
+    app.kubernetes.io/instance: "release-name"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/version: "7"
+  annotations:
+    checksum/install_info: 694303964ad805dc19e2647d69094f47d63feffbac7545735bfa9b55e0162ae2
+data:
+  install_info: |
+    ---
+    install_method:
+      tool: helm
+      tool_version: Helm
+      installer_version: datadog-2.30.10

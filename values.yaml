@@ -1,0 +1,7 @@
+datadog:
+  collectEvents: true
+  leaderElection: true
+  logs:
+    enabled: true
+  apm:
+    enabled: true
